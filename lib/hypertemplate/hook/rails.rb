@@ -31,8 +31,8 @@ module Hypertemplate
   module Hook
     module Rails
 
-      class Hypertemplate < ::ActionView::TemplateHandler
-        include ::ActionView::TemplateHandlers::Compilable
+      class Hypertemplate < (::Rails::VERSION::MAJOR < 3 ? ::ActionView::TemplateHandler : ::Object)
+        include ::ActionView::TemplateHandlers::Compilable if ::Rails::VERSION::MAJOR < 3
 
         def compile(template)
           "@content_type_helpers = controller.hypertemplate_registry[self.response.content_type].helper; " +

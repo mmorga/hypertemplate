@@ -15,6 +15,8 @@ module Hypertemplate
           @media_types.push(*media_types)
         end
 
+        eval %(
+
         def build_dsl(obj, options = {}, &block)
           recipe = block_given? ? block : options.delete(:recipe)
           raise Hypertemplate::BuilderError.new("Recipe required to build representation.") unless recipe.respond_to?(:call)
@@ -33,7 +35,8 @@ module Hypertemplate
 
           builder.representation
         end
-        
+        )
+
         def copy_internal_variables(builder, obj)
           # TODO this is nasty. i am sorry.
           obj.instance_variables.each do |name|

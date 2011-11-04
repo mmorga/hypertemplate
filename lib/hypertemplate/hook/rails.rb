@@ -32,7 +32,6 @@ module Hypertemplate
     module Rails
 
       class Hypertemplate < ::ActionView::TemplateHandler
-        include ::ActionView::TemplateHandlers::Compilable
 
         def compile(template)
           "@content_type_helpers = controller.hypertemplate_registry[self.response.content_type].helper; " +

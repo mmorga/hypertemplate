@@ -1,18 +1,17 @@
 require 'test/unit'
 require 'rubygems'
-require "methodize"
-require "rack/conneg"
+require 'methodize'
+require 'action_controller'
+require 'rack/conneg'
 
 begin
   require 'ruby-debug'
 rescue Exception => e; end
 
-require File.expand_path(File.dirname(__FILE__) + '/../../rails2_skel/config/environment.rb')
-
 # put the require below to use hypertemplate in your rails project
-require "hypertemplate/hook/rails"
+require 'hypertemplate/hook/rails'
 
-class Hypertemplate::Hook::RailsTest < ActionController::IntegrationTest
+class Hypertemplate::Hook::RailsTest < ActionDispatch::IntegrationTest
 
   def test_view_generation_with_json
     get '/test/show', {}, :accept => 'application/json'

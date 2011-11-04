@@ -31,9 +31,9 @@ module Hypertemplate
   module Hook
     module Rails
 
-      class Hypertemplate < ::ActionView::TemplateHandler
+      class Hypertemplate
 
-        def compile(template)
+        def self.call(template)
           "@content_type_helpers = controller.hypertemplate_registry[self.response.content_type].helper; " +
           "extend @content_type_helpers; " +
           "extend Hypertemplate::Hook::Rails::Helpers; " +

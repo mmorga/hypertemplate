@@ -279,7 +279,7 @@ end
 class Hypertemplate::Builder::XmlLambdaTest < Test::Unit::TestCase
   
   def xml_build_and_parse(obj = {}, options = {}, &block)
-    block ||= lambda {}
+    block ||= Proc.new {}
     xml = Hypertemplate::Builder::Xml.build_dsl(obj, options, &block)
     Nokogiri::XML::Document.parse(xml)
   end
